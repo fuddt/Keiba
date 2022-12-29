@@ -1,0 +1,11 @@
+version: '3'
+services:
+  django:
+    tty: true
+    build: ./
+    image: shirotabi
+    container_name: shirotabi
+    ports:
+     - 8000:8000
+    volumes:
+      - ./shirotabiDjango:/usr/src/shirotabiDjango

@@ -1,0 +1,63 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <title>競馬　馬券組み合わせ</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'combination/css/bootstrap.css' %}" />
+
+</head>
+<body>
+    <main>
+    <section>
+        <formfield>        
+        <form action="{% url 'index' %}" method='post'>
+            {% csrf_token %}
+        <table>
+            {{ticket_type_form}}
+        </table>
+        <table>
+            <th>馬番</th>
+            {% for num in number%}
+            <th>
+            {{num}}
+            </th>
+            {% endfor %}
+            <tr>
+                <td>{{first_horse.first_horse_num.label}}</td>
+            {% for radiobutton in first_horse.first_horse_num %}
+                <td>{{radiobutton}}</td>
+            {% endfor%}
+            </tr>
+            <tr>
+                <td>{{second_horse.second_horse_num.label}}</td>
+            {% for radiobutton in second_horse.second_horse_num %}
+                <td>{{radiobutton}}</td>
+            {% endfor%}
+            </tr>
+            <tr>
+                <td>{{third_horse.third_horse_num.label}}</td>
+            {% for radiobutton in third_horse.third_horse_num %}
+                <td>{{radiobutton}}</td>
+            {% endfor%}
+            </tr>
+        </table>
+        <table>
+            <input type='submit' value='計算' class='btn btn-primary my-2'>
+        </table>
+        </from>
+        </formfield>
+    </section>
+    <!-- 結果の出力 -->
+    <section>
+    
+    <h2>{{sum}}</h2>
+    <ul>
+    {% for combi in result%}
+    <li>{{combi}}</li>
+    {% endfor %}
+    </ul>
+    </section>
+    </main>
+<body>
+</html>
