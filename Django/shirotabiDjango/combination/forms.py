@@ -9,8 +9,11 @@ class TicketTypeForm(forms.Form):
         ('trio','３連複'),
         ('trifecta','３連単'),
     ]
-    ticket_type = forms.ChoiceField(label = '馬券種',choices=items, 
-                                   required=True)
+    ticket_type = forms.ChoiceField(label = '馬券種',
+                                    widget=forms.Select(attrs={'class':"form-select",
+                                                               "aria-label":"Default select example"}),
+                                    choices=items,
+                                    required=True)
 
 class Items(object):
     # make choices horse number 1~18
@@ -19,18 +22,18 @@ class Items(object):
     
 class FirstHorseNumberForm(forms.Form):
     first_horse_num = forms.MultipleChoiceField(label='1頭目',choices=Items.items,
-                                  widget=forms.CheckboxSelectMultiple(),
+                                  widget=forms.CheckboxSelectMultiple(attrs={'class':"form-check-input"}),
                                   help_text='１つは選択をしてください。',
                                   required=True)
     
 class SecondHorseNumberForm(forms.Form):
     second_horse_num = forms.MultipleChoiceField(label='2頭目',choices=Items.items,
-                                  widget=forms.CheckboxSelectMultiple(),
+                                  widget=forms.CheckboxSelectMultiple(attrs={'class':"form-check-input"}),
                                   help_text='1つは選択をしてください。',
                                   required=True)
     
 class ThirdHorseNumberForm(forms.Form):
     third_horse_num = forms.MultipleChoiceField(label='3頭目',choices=Items.items,
-                                  widget=forms.CheckboxSelectMultiple(),
+                                  widget=forms.CheckboxSelectMultiple(attrs={'class':"form-check-input"}),
                                   help_text='1つは選択をしてください。',
                                   required=True)
